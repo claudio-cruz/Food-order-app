@@ -54,14 +54,14 @@ function cartReducer(state, action) {
 }
 
 export function CartContextProvider({ children }) {
-  const [ cart, dispatchCartAction ] = useReducer(cartReducer, { item: [] })
+  const [ cart, dispatchCartAction ] = useReducer(cartReducer, { items: [] })
 
   function addItem(item) {
-    dispatchCartAction({ type: 'ADD-ITEM', item})
+    dispatchCartAction({ type: 'ADD_ITEM', item})
   }
 
   function removeItem(id) {
-    dispatchCartAction({ type: 'REMOVE-ITEM', id})
+    dispatchCartAction({ type: 'REMOVE_ITEM', id})
   }
 
   const cartContext = {
@@ -69,6 +69,8 @@ export function CartContextProvider({ children }) {
     addItem,
     removeItem
   }
+
+  console.log(cartContext)
 
   return <CartContext.Provider value={cartContext}>{children}</CartContext.Provider>
 }
